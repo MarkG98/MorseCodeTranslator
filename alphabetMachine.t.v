@@ -24,6 +24,8 @@ module testAlphabetMachine();
   initial begin
     clk = 0;
 
+    $dumpfile("alphabetMachine.vcd");
+    $dumpvars();
 
     $display("Signal | done |   letter  | state");
     $display("------------------------------------");
@@ -71,5 +73,6 @@ module testAlphabetMachine();
     $display("%b    |  %b   |   %d     |  %d", inputSignal, done, letter, dut.state);
     inputSignal = `SPACE; #5 clk = 1; #5 clk = 0;
     $display("%b    |  %b   |   %d     |  %d", inputSignal, done, letter, dut.state);
+    #200 $finish();
   end
 endmodule

@@ -22,7 +22,7 @@ module counterReset
   end
 endmodule // counter
 
-module NewDitCounter
+module DitDahDecoder
 #(parameter WIDTH=27)
  (
   output reg [2:0] ditsdahs,
@@ -41,22 +41,20 @@ module NewDitCounter
     end
   end
   always @ (posedge signal) begin
-    if (count[WIDTH:WIDTH-2] == 3'b011) begin
-      ditsdahs = `GAP;
-      flag = 0;
-    end
+    flag = 0;
     if (count[WIDTH:WIDTH-2] == 3'b111) begin
       ditsdahs = `SPACE;
-      flag = 0;
     end
   end
   always @ (posedge clk) begin
     if (count[WIDTH:WIDTH-2] == 3'b011 && signal == 0 && flag == 0) begin
+      #1
       ditsdahs = `GAP;
       flag = 1;
     end
     else begin
-    ditsdahs = `WAIT;
+      #1
+      ditsdahs = `WAIT;
     end
   end
-endmodule // NewDitCounter
+endmodule // DitDahDecoder
