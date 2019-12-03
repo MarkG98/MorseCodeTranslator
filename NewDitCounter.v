@@ -29,6 +29,7 @@ module NewDitCounter
   input signal,
   input clk
   );
+  reg flag;
   wire [WIDTH:0] count;
   counterReset #(WIDTH) countRes(.count(count),.clk(clk),.signal(signal));
   always @ (negedge signal) begin
@@ -42,12 +43,20 @@ module NewDitCounter
   always @ (posedge signal) begin
     if (count[WIDTH:WIDTH-2] == 3'b011) begin
       ditsdahs = `GAP;
+      flag = 0;
     end
     if (count[WIDTH:WIDTH-2] == 3'b111) begin
       ditsdahs = `SPACE;
+      flag = 0;
     end
   end
   always @ (posedge clk) begin
+    if (count[WIDTH:WIDTH-2] == 3'b011 && signal == 0 && flag == 0) begin
+      ditsdahs = `GAP;
+      flag = 1;
+    end
+    else begin
     ditsdahs = `WAIT;
+    end
   end
 endmodule // NewDitCounter
