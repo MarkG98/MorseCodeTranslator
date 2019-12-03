@@ -1,11 +1,13 @@
-`include "NewDitCounter.v"
+`include "MorseDecoder.v"
 
-module NewDitCounterTest ();
+module MorseDecoderTest ();
   reg clk;
   reg signal;
-  wire [2:0] ditsdahs;
+  wire [7:0] letter;
+  wire done;
 
-  NewDitCounter #(8) newage(.ditsdahs(ditsdahs), .signal(signal), .clk(clk));
+  MorseDecoder #(8) decoder(.letter(letter),.done(done), .signal(signal), .clk(clk));
+
   always begin
     #5 clk = ~clk;
   end
@@ -14,7 +16,7 @@ module NewDitCounterTest ();
     `define change(sig) \
     signal = sig; #330 #330
 
-    $dumpfile("Dit.vcd");
+    $dumpfile("Decoder.vcd");
     $dumpvars();
     clk = !clk; #5
     `change(1)
