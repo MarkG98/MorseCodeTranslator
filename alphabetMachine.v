@@ -9,8 +9,10 @@
 
 module alphaFSM
 (
-  output reg [5:0] letter, // output letter
-  input [2:0] inputSignal // Can be dit, dah, gap, space, or wait
+  output reg [7:0] letter, // output letter
+  output reg done, //
+  input [2:0] inputSignal, // Can be dit, dah, gap, space, or wait
+  input clk
 );
 
   // state encoding (binary counter)
@@ -43,27 +45,44 @@ module alphaFSM
              W = 23,
              Ex = 24,
              Y = 25,
-             Zee = 26;
+             Zee = 26,
+             space = 27;
 
   // Set initial state to start
   initial begin
       state = start;
+      letter = 8'b0;
   end
 
   // Update the state on the positive clock edge
   always @ ( posedge clk ) begin
-
-      // If a dit, dash, space, or gap has not yet been established,
-      // stay in the same state (i.e. don't change leter)
-      if (inputSignal == `WAIT) begin
-        state <= state;
-      end
 
       // Go back to start if a gap is reveived to
       // start a new letter
       if (inputSignal == `GAP) begin
         state <= start;
       end
+
+      // If we encounter a space while in the start state go to the space
+      // state and then to the start state
+      if (state == start && inputSignal == `SPACE) begin
+        state <= space;
+      end
+      if (state != start && inputSignal == `SPACE) begin
+        state <= state;
+      end
+      if (state == space) begin
+        state <= start;
+      end
+
+      // If a dit, dash, space, or gap has not yet been established,
+      // stay in the same state (i.e. don't change leter).
+      // Note that space will always go to start on the clock posedge
+      // so we don't wait when in this state.
+      if (state != space && inputSignal == `WAIT) begin
+        state <= state;
+      end
+
 
       // Transitions from start
       if (state == start && inputSignal == `DIT) begin
@@ -170,6 +189,38 @@ module alphaFSM
       if (state == G && inputSignal == `DAH) begin
         state <= Q;
       end
+  end
 
+  always @( state ) begin
+      case (state)
+        start: begin done = 1; letter = letter; end
+        A: begin done = 0; letter = 65; end
+        B: begin done = 0; letter = 66; end
+        C: begin done = 0; letter = 67; end
+        D: begin done = 0; letter = 68; end
+        E: begin done = 0; letter = 69; end
+        F: begin done = 0; letter = 70; end
+        G: begin done = 0; letter = 71; end
+        H: begin done = 0; letter = 72; end
+        I: begin done = 0; letter = 73; end
+        J: begin done = 0; letter = 74; end
+        K: begin done = 0; letter = 75; end
+        L: begin done = 0; letter = 76; end
+        M: begin done = 0; letter = 77; end
+        N: begin done = 0; letter = 78; end
+        O: begin done = 0; letter = 79; end
+        P: begin done = 0; letter = 80; end
+        Q: begin done = 0; letter = 81; end
+        R: begin done = 0; letter = 82; end
+        S: begin done = 0; letter = 83; end
+        T: begin done = 0; letter = 84; end
+        U: begin done = 0; letter = 85; end
+        V: begin done = 0; letter = 86; end
+        W: begin done = 0; letter = 87; end
+        Ex: begin done = 0; letter = 88; end
+        Y: begin done = 0; letter = 89; end
+        Zee: begin done = 0; letter = 90; end
+        space: begin done = 0; letter = 32; end
+      endcase
   end
 endmodule
