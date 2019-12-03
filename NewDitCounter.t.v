@@ -5,14 +5,14 @@ module NewDitCounterTest ();
   reg signal;
   wire [2:0] ditsdahs;
 
-  NewDitCounter newage(.ditsdahs(ditsdahs), .signal(signal), .clk(clk));
+  NewDitCounter #(27) newage(.ditsdahs(ditsdahs), .signal(signal), .clk(clk));
   always begin
-    #5 clk = ~clk;
+    #2 clk = ~clk;
   end
   initial begin
     clk = 0;
     `define change(sig) \
-    signal = sig; #330 #330
+    signal = sig; #500000000 #500000000
 
     $dumpfile("Dit.vcd");
     $dumpvars();
