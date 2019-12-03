@@ -129,8 +129,8 @@ always @ (state) begin
     ONEONEONE: begin ditsdahs = 0; end
     ONEONEONEZERO: begin ditsdahs = 2; end
     ZEROZERO: begin ditsdahs = 0; end
-    ZEROZEROZERO: begin ditsdahs = 0; end
-    ZEROZEROZEROONE: begin ditsdahs = 3; end
+    ZEROZEROZERO: begin ditsdahs = 3; end
+    ZEROZEROZEROONE: begin ditsdahs = 0; end
     ZEROZEROZEROZERO: begin ditsdahs = 0; end
     ZEROZEROZEROZEROZERO: begin ditsdahs = 0; end
     ZEROZEROZEROZEROZEROZERO: begin ditsdahs = 0; end
