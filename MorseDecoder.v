@@ -1,6 +1,7 @@
+`ifndef MORSE
+`define MORSE
+
 `include "DitDahDecoder.v"
-
-
 `include "alphabetMachine.v"
 
 module MorseDecoder
@@ -14,7 +15,7 @@ module MorseDecoder
     wire [2:0] ditsdahs;
 
     // Instantiate translater from 1s and 0s to dits, dahs, spaces, and gaps
-    DitDahDecoder #(8) decoder(.ditsdahs(ditsdahs),
+    DitDahDecoder #(27) sub_decoder(.ditsdahs(ditsdahs),
                                .signal(signal),
                                .clk(clk));
 
@@ -24,3 +25,4 @@ module MorseDecoder
                       .clk(clk));
 
 endmodule // MorseDecoder
+`endif

@@ -27,25 +27,27 @@
 
 module lab0_wrapper_pmod
 (
-    input  btn,             // Button 0, used for inputting the "morse code"
-    output [7:0] je         // Plug LD8 into JE, used to display the ASCII code of the decoded letter
+    input [3:0] btn,             // Button 0, used for inputting the "morse code"
+    input clk,
+    output [7:0] je
 );
 
-    wire reg inputSignal;        // Input to decoder
+    wire inputSignal;        // Input to decoder
     wire [7:0] letter;           // 8-bit ASCII code
     wire done;                   // Done flag
 
-    MorseDecoder decoder(.letter(letter),.done(done),.signal(inputSignal),.clk(clk));
+    MorseDecoder decoder(.letter(letter),
+                         .done(done),
+                         .signal(inputSignal),
+                         .clk(clk));
 
-    always(@ posedge clk) begin
-      if (done) begin
-        assign inputSignal = btn;
-        assign letter = je[7:0];
-      end
-    end
+    assign inputSignal = btn[0];
+    //assign je = clk;
+    assign je[0] = decoder.sub_decoder.count[27];
 
-    // Assign logical signals to physical ports (change these if you move the Pmods)
-    assign inputSignal = btn;
-    assign letter = je[7:0];
-
+    // always @( * ) begin
+    //   if (done) begin
+    //     je = letter;
+    //   end
+    // end
 endmodule

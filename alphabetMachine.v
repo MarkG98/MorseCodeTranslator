@@ -1,3 +1,6 @@
+`ifndef ALPHA
+`define ALPHA
+
 // FSM which takes a dot, dash, or gap as an input and tracks through a tree of the alphabet with these signals
 
 // Input signal defines
@@ -224,3 +227,4 @@ module alphaFSM
       endcase
   end
 endmodule
+`endif

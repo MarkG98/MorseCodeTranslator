@@ -1,3 +1,6 @@
+`ifndef DITDAH
+`define DITDAH
+
 `define WAIT 3'h0
 `define DIT 3'h1
 `define DAH 3'h2
@@ -58,3 +61,4 @@ module DitDahDecoder
     end
   end
 endmodule // DitDahDecoder
+`endif
