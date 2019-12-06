@@ -13,15 +13,22 @@ module counterReset
   output reg [WIDTH:0] count,
   input clk,
   input signal
-  );
+);
+
+  reg previous = 0;
+
+  initial begin
+    count = 0;
+  end
+
   always @ (posedge clk) begin
-    count = count+1;
-  end
-  always @ (negedge signal) begin
-    #1 count = 0;
-  end
-  always @ (posedge signal) begin
-    #1 count = 0;
+    if (signal === previous) begin
+      #1 count <= count+1;
+    end
+    else begin
+      #1 count <= 0;
+    end
+    previous <= signal;
   end
 endmodule // counter
 
