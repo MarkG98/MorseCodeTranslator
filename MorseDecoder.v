@@ -5,6 +5,7 @@
 `include "alphabetMachine.v"
 
 module MorseDecoder
+#(parameter WIDTH=27)
   (
     output [7:0] letter,
     output done,
@@ -15,7 +16,7 @@ module MorseDecoder
     wire [2:0] ditsdahs;
 
     // Instantiate translater from 1s and 0s to dits, dahs, spaces, and gaps
-    DitDahDecoder #(27) sub_decoder(.ditsdahs(ditsdahs),
+    DitDahDecoder #(WIDTH) sub_decoder(.ditsdahs(ditsdahs),
                                .signal(signal),
                                .clk(clk));
 

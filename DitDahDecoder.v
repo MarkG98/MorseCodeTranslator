@@ -23,10 +23,10 @@ module counterReset
 
   always @ (posedge clk) begin
     if (signal === previous) begin
-      #1 count <= count+1;
+      count <= count+1;
     end
     else begin
-      #1 count <= 0;
+      count <= 0;
     end
     previous <= signal;
   end
@@ -39,33 +39,30 @@ module DitDahDecoder
   input signal,
   input clk
   );
-  reg flag;
+  reg prevVal;
   wire [WIDTH:0] count;
   counterReset #(WIDTH) countRes(.count(count),.clk(clk),.signal(signal));
-  always @ (negedge signal) begin
-    if (count[WIDTH:WIDTH-2] == 3'b001) begin
-      ditsdahs = `DIT;
-    end
-    if (count[WIDTH:WIDTH-2] == 3'b011) begin
-      ditsdahs = `DAH;
-    end
-  end
-  always @ (posedge signal) begin
-    flag = 0;
-    if (count[WIDTH:WIDTH-2] == 3'b111) begin
-      ditsdahs = `SPACE;
-    end
-  end
   always @ (posedge clk) begin
-    if (count[WIDTH:WIDTH-2] == 3'b011 && signal == 0 && flag == 0) begin
-      #1
-      ditsdahs = `GAP;
-      flag = 1;
+    if(prevVal == 1 && signal == 0) begin
+      if (count[WIDTH:WIDTH-2] == 3'b001) begin
+        ditsdahs <= `DIT;
+      end
+      if (count[WIDTH:WIDTH-2] == 3'b011) begin
+        ditsdahs <= `DAH;
+      end
+    end
+    else if(prevVal == 0 && signal == 1) begin
+      if (count[WIDTH:WIDTH-2] == 3'b111) begin
+        ditsdahs <= `SPACE;
+      end
+    end
+    else if (count[WIDTH:WIDTH-2] == 3'b011 && count[WIDTH-3:0] == 0 && signal == 0) begin
+      ditsdahs <= `GAP;
     end
     else begin
-      #1
-      ditsdahs = `WAIT;
+      ditsdahs <= `WAIT;
     end
+    prevVal <= signal;
   end
 endmodule // DitDahDecoder
 `endif
