@@ -11,7 +11,7 @@ We separated the Morse Decoder into three distinct parts. The first part decodes
 
 ![Image](Images/OverallSchematic.png)
 
-## Signal into DITs and DAHs
+## Decoding the Signal Into DITs, DAHs, GAPs and SPACEs
 Describing [`DitDahDecoder.v`](https://github.com/MarkG98/MorseCodeTranslator/blob/master/DitDahDecoder.v)
 
 To implement the signal decoder, we made a counter that starts counting up as long as the signal is constant, whether high or low. The counter increments by one for each clock cycle. When the signal switches, the counter is reset to 0. This counter serves as a debouncer of the button as well as timing for the DITs, DAHs, GAPs and SPACEs. The following table details what constitutes a DIT DAH, GAP and SPACE:
@@ -25,7 +25,7 @@ To implement the signal decoder, we made a counter that starts counting up as lo
 
 DITs and DAHs are activated when the signal goes from on to off, depending on the value of the counter. If the three most significant bits (MSB) are 001, a DIT is output for one clock cycle. if the three most significant bits are 011, a DAH is output for one clock cycle. Because a SPACE is technically needed for separating the letters, GAP needs to be an output in addition to a SPACE being an output. So GAP is output as soon as the most significant bits are 011, and all other bits are 0, so that it only reads out for one clock cycle. A SPACE is output when the signal goes from off to on, and the most significant bits are 111. If none of the conditions are met, it outputs a WAIT state indicating nothing to be done. Checking the three most significant bits gives the user a window of one time length (same as the length of a DIT), as users are not perfect. For our implementation on the FPGA, the clock is running at 120MHz, and we decided upon 28 bits for the counter, causing the time length to be about one second.
 
-## Translating Dits, Dahs, SPACEs, and GAPs Into Letters
+## Translating DITs, Dahs, GAPs and SPACEs Into Letters
 
 ![Image](Images/ALPHAFSM.png)
 
