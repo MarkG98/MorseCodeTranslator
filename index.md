@@ -1,5 +1,5 @@
 ---
-permalink: /home/
+permalink: /index/
 title: Home
 ---
 
