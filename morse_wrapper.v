@@ -24,30 +24,48 @@
 `timescale 1ns / 1ps
 
 `include "MorseDecoder.v"
+`include "register.v"
 
 module lab0_wrapper_pmod
 (
     input [3:0] btn,             // Button 0, used for inputting the "morse code"
     input clk,
-    output [7:0] je
+    output reg [7:0] je,
+    output [3:0] led
 );
 
     wire inputSignal;        // Input to decoder
     wire [7:0] letter;           // 8-bit ASCII code
     wire done;                   // Done flag
 
-    MorseDecoder decoder(.letter(letter),
+    wire synch0out;
+    wire synch1out;
+
+    register synch0(.d(inputSignal),
+                    .q(synch0out),
+                    .wrenable(1'b0),
+                    .clk(clk));
+
+    register synch1(.d(synch0out),
+                    .q(synch1out),
+                    .wrenable(1'b0),
+                    .clk(clk));
+
+
+    MorseDecoder #(29) decoder(.letter(letter),
                          .done(done),
-                         .signal(inputSignal),
+                         .signal(synch1out),
                          .clk(clk));
 
     assign inputSignal = btn[0];
     //assign je = clk;
-    assign je[0] = decoder.sub_decoder.count[27];
+    assign led[0] = decoder.sub_decoder.count[29];
+    assign led[1] = decoder.sub_decoder.count[27];
+    //assign je[0] = decoder.sub_decoder.count[27];
 
-    // always @( * ) begin
-    //   if (done) begin
-    //     je = letter;
-    //   end
-    // end
+    always @( * ) begin
+      if (done) begin
+        je = letter;
+      end
+    end
 endmodule
