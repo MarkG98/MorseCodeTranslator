@@ -19,6 +19,10 @@ Dits and Dahs are activated when the signal goes from on to off, depending on th
 
 ![Image](Images/ALPHAFSM.png)
 
+Alphabet FSM takes in the dits, dahs, spaces, and gaps produced by the module in `DitDahDecoder.v` and translates a series of these signals to letters for the system to output. This finite state machine is in the `alphabetMachine.v` file in the project repository.
+
+A slightly simplified version of the implemented finite state machine is shown above is shown above
+
 ## Wrapper for FPGA
 
 The FPGA implementation of the Vivado simulation required a wrapper to synthesize on the FPGA we used for the project (the Zybo Zynq-7000). Once the Vivado implementation was completed, we wrote morse_wrapper.v to include the MorseDecoder.v file that managed the signals and states in combination with a register module file. The wrapper file consists of a singular module that takes the clock and button presses as inputs, and outputs various information on the board LEDs, as well as a peripheral module that has an 8-LED package. The inputs and outputs of the MorseDecoder module were wired up, and the input signal was assigned to a button on the FPGA. After this signal was received on the hardware, we ran it through two D-flip-flops to synchronize it with the clock, and then passed it as an input to the MorseDecoder module. The outputs of this module, done and letter, were assigned to various LEDs on the FPGA and peripheral board, listed below in the table.
