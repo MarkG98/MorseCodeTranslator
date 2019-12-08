@@ -7,7 +7,7 @@ title: Home
 
 ## What is this?
 
-This website serves as documentation of our Fall 2019 Computer Architecture final project, a morse code decoder.
+This website serves as documentation of our Fall 2019 Computer Architecture final project, an FPGA-implemented, human-input morse code decoder.
 
 ## Why did we do this?
 
