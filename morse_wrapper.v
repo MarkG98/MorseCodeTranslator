@@ -43,12 +43,12 @@ module lab0_wrapper_pmod
 
     register synch0(.d(inputSignal),
                     .q(synch0out),
-                    .wrenable(1'b0),
+                    .wrenable(1'b1),
                     .clk(clk));
 
     register synch1(.d(synch0out),
                     .q(synch1out),
-                    .wrenable(1'b0),
+                    .wrenable(1'b1),
                     .clk(clk));
 
 
@@ -61,11 +61,11 @@ module lab0_wrapper_pmod
     //assign je = clk;
     assign led[0] = decoder.sub_decoder.count[29];
     assign led[1] = decoder.sub_decoder.count[27];
+    assign led[2] = done;
+    assign led[3] = synch1out;
     //assign je[0] = decoder.sub_decoder.count[27];
 
     always @( * ) begin
-      if (done) begin
-        je = letter;
-      end
+       je = letter;
     end
 endmodule
