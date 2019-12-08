@@ -1,3 +1,3 @@
-{% include navigation.html}
+{% include navigation.html %}
 
 testing
