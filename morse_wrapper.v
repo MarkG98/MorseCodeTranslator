@@ -58,14 +58,13 @@ module lab0_wrapper_pmod
                          .clk(clk));
 
     assign inputSignal = btn[0];
-    //assign je = clk;
+
     assign led[0] = decoder.sub_decoder.count[29];
     assign led[1] = decoder.sub_decoder.count[27];
     assign led[2] = done;
     assign led[3] = synch1out;
-    //assign je[0] = decoder.sub_decoder.count[27];
 
-    always @( * ) begin
+    always @( posedge done ) begin
        je = letter;
     end
 endmodule
