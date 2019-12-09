@@ -37,7 +37,7 @@ A slightly simplified version of the implemented finite state machine is shown a
 
 The FPGA implementation of the Vivado simulation required a wrapper to synthesize on the FPGA we used for the project (the [Zybo Zynq-7000](https://reference.digilentinc.com/reference/programmable-logic/zybo/start)). Once the Vivado implementation was completed, we wrote [`morse_wrapper.v`](https://github.com/MarkG98/MorseCodeTranslator/blob/master/morse_wrapper.v) to include the [`MorseDecoder.v`](https://github.com/MarkG98/MorseCodeTranslator/blob/master/MorseDecoder.v) file that managed the signals and states in combination with a register module file [`register.v`](https://github.com/MarkG98/MorseCodeTranslator/blob/master/register.v). The wrapper file consists of a singular module that takes the clock and button presses as inputs, and outputs various information on the board LEDs, as well as a peripheral module that has an 8-LED package. The inputs and outputs of the MorseDecoder module were wired up, and the input signal was assigned to a button on the FPGA. After this signal was received on the hardware, we ran it through two D-flip-flops to synchronize it with the clock, and then passed it as an input to the MorseDecoder module. The outputs of this module, done and letter, were assigned to various LEDs on the FPGA and peripheral board, listed below in the hardware output guide.
 
-### Hardware Output Guide
+### Hardware I/O Guide
 
 |   Hardware   |  Information Displayed  |
 |--------------|-------------------------|
