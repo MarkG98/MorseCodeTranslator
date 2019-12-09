@@ -196,7 +196,7 @@ module alphaFSM
 
   always @( state ) begin
       case (state)
-        start: begin done = 1; letter = 0; end
+        start: begin done = 1; letter = letter; end
         A: begin done = 0; letter = 65; end
         B: begin done = 0; letter = 66; end
         C: begin done = 0; letter = 67; end

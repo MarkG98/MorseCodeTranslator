@@ -64,7 +64,9 @@ module lab0_wrapper_pmod
     assign led[2] = done;
     assign led[3] = synch1out;
 
-    always @( * ) begin
-       je <= letter;
+    always @( posedge clk ) begin
+      if (done) begin
+        je <= letter;
+      end
     end
 endmodule
