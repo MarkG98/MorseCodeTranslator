@@ -42,6 +42,7 @@ The FPGA implementation of the Vivado simulation required a wrapper to synthesiz
 |   Hardware   |  Information Displayed  |
 |--------------|-------------------------|
 | Button 0     |        User Input       |
+| Button 1     |        Done Signal      |
 | LED 0        |      MSB of Counter     |
 | LED 1        |    3rd MSB of Counter   |
 | LED 2        |        Done Flag        |
