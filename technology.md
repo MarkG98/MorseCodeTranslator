@@ -46,7 +46,7 @@ The FPGA implementation of the Vivado simulation required a wrapper to synthesiz
 | LED 0        |      MSB of Counter     |
 | LED 1        |    3rd MSB of Counter   |
 | LED 2        |        Done Flag        |
-| LED 2        | Output 1st Synchronizer |
+| LED 2        |   Output Synchronizer   |
 | PMOD LED 0-7 |   ASCII Code of Letter  |
 
 ## Difficulties
