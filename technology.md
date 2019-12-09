@@ -47,3 +47,11 @@ The FPGA implementation of the Vivado simulation required a wrapper to synthesiz
 | LED 2        |        Done Flag        |
 | LED 2        | Output 1st Synchronizer |
 | PMOD LED 0-7 |   ASCII Code of Letter  |
+
+## Difficulties
+
+* The initial DIT DAH decoder used a state machine, but that implementation was too constraining for the user it input the Morse Code.
+* We had difficulty deciding the best method to notifying when the letter was ready to output. This included sending a done signal, only outputting the letter when it was ready, and outputting the letter for one clock cycle. We settled upon sending a done signal, which may be a cause to our difficulty with the FPGA (see last bullet point).
+* On the FPGA side, it was difficult thinking about when exactly to change the LEDs. We ended up with changing the LEDs on a positive clock edge when the done flag is up.
+* At one point, the DIT DAH decoder was changing both at a positive edge of a clock, and the positive edge of the input signal. This caused errors once we moved to the FPGA. To fix, we put all logic inside a single always @ positive clock edge, and dealt with other things with if statements.
+* While our overall decoder worked perfectly in simulation, the implementation on the FPGA never worked. It would set the letter to 0s whenever the state went to start, and we still don't know why this occurs, as nowhere in our code do we set letter to 0.
