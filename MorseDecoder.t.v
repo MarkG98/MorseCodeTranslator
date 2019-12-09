@@ -1,5 +1,19 @@
 `include "MorseDecoder.v"
 
+/*
+If you want to input your own message, each change function represents one time step.
+A dit is one 1, a dah is three 1s, a gap is three 0s, and a space is seven 0s
+E.g - to implement an A,
+`change(1)
+`change(0)
+`change(1)
+`change(1)
+`change(1)
+`change(0)
+`change(0)
+`change(0)
+*/
+
 module MorseDecoderTest ();
   reg clk;
   reg signal;
