@@ -68,15 +68,15 @@ module alphaFSM
 
       // If we encounter a space while in the start state go to the space
       // state and then to the start state
-      if (state == start && inputSignal == `SPACE) begin
-        state <= space;
-      end
-      if (state != start && inputSignal == `SPACE) begin
-        state <= state;
-      end
-      if (state == space) begin
-        state <= start;
-      end
+     if (state == start && inputSignal == `SPACE) begin
+       state <= space;
+     end
+     if (state != start && inputSignal == `SPACE) begin
+       state <= state;
+     end
+     if (state == space) begin
+       state <= start;
+     end
 
       // If a dit, dash, space, or gap has not yet been established,
       // stay in the same state (i.e. don't change leter).
@@ -196,7 +196,7 @@ module alphaFSM
 
   always @( state ) begin
       case (state)
-        start: begin done = 1; letter = letter; end
+        start: begin done = 1; letter = 0; end
         A: begin done = 0; letter = 65; end
         B: begin done = 0; letter = 66; end
         C: begin done = 0; letter = 67; end
