@@ -53,18 +53,21 @@ module lab0_wrapper_pmod
 
 
     MorseDecoder #(29) decoder(.letter(letter),
-                         .done(done),
                          .signal(synch1out),
                          .clk(clk));
 
     assign inputSignal = btn[0];
+    assign done = btn[1];
 
     assign led[0] = decoder.sub_decoder.count[29];
     assign led[1] = decoder.sub_decoder.count[27];
     assign led[2] = done;
     assign led[3] = synch1out;
 
-    always @( * ) begin
+    always @(posedge clk) begin
+      if (done) begin
        je <= letter;
+      end
     end
 endmodule
+

@@ -13,7 +13,6 @@
 module alphaFSM
 (
   output reg [7:0] letter, // output letter
-  output reg done, //
   input [2:0] inputSignal, // Can be dit, dah, gap, space, or wait
   input clk
 );
@@ -196,34 +195,34 @@ module alphaFSM
 
   always @( state ) begin
       case (state)
-        start: begin done = 1; letter = 0; end
-        A: begin done = 0; letter = 65; end
-        B: begin done = 0; letter = 66; end
-        C: begin done = 0; letter = 67; end
-        D: begin done = 0; letter = 68; end
-        E: begin done = 0; letter = 69; end
-        F: begin done = 0; letter = 70; end
-        G: begin done = 0; letter = 71; end
-        H: begin done = 0; letter = 72; end
-        I: begin done = 0; letter = 73; end
-        J: begin done = 0; letter = 74; end
-        K: begin done = 0; letter = 75; end
-        L: begin done = 0; letter = 76; end
-        M: begin done = 0; letter = 77; end
-        N: begin done = 0; letter = 78; end
-        O: begin done = 0; letter = 79; end
-        P: begin done = 0; letter = 80; end
-        Q: begin done = 0; letter = 81; end
-        R: begin done = 0; letter = 82; end
-        S: begin done = 0; letter = 83; end
-        T: begin done = 0; letter = 84; end
-        U: begin done = 0; letter = 85; end
-        V: begin done = 0; letter = 86; end
-        W: begin done = 0; letter = 87; end
-        Ex: begin done = 0; letter = 88; end
-        Y: begin done = 0; letter = 89; end
-        Zee: begin done = 0; letter = 90; end
-        space: begin done = 0; letter = 32; end
+        start: begin letter = 0; end
+        A: begin letter = 65; end
+        B: begin letter = 66; end
+        C: begin letter = 67; end
+        D: begin letter = 68; end
+        E: begin letter = 69; end
+        F: begin letter = 70; end
+        G: begin letter = 71; end
+        H: begin letter = 72; end
+        I: begin letter = 73; end
+        J: begin letter = 74; end
+        K: begin letter = 75; end
+        L: begin letter = 76; end
+        M: begin letter = 77; end
+        N: begin letter = 78; end
+        O: begin letter = 79; end
+        P: begin letter = 80; end
+        Q: begin letter = 81; end
+        R: begin letter = 82; end
+        S: begin letter = 83; end
+        T: begin letter = 84; end
+        U: begin letter = 85; end
+        V: begin letter = 86; end
+        W: begin letter = 87; end
+        Ex: begin letter = 88; end
+        Y: begin letter = 89; end
+        Zee: begin letter = 90; end
+        space: begin letter = 32; end
       endcase
   end
 endmodule

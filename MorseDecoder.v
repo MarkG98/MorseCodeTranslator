@@ -8,7 +8,6 @@ module MorseDecoder
 #(parameter WIDTH=27)
   (
     output [7:0] letter,
-    output done,
     input signal,
     input clk
   );
@@ -17,11 +16,10 @@ module MorseDecoder
 
     // Instantiate translater from 1s and 0s to dits, dahs, spaces, and gaps
     DitDahDecoder #(WIDTH) sub_decoder(.ditsdahs(ditsdahs),
-                               .signal(signal),
-                               .clk(clk));
+                                       .signal(signal),
+                                       .clk(clk));
 
     alphaFSM alphabet(.letter(letter),
-                      .done(done),
                       .inputSignal(ditsdahs),
                       .clk(clk));
 
