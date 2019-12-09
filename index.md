@@ -5,7 +5,12 @@ title: Home
 
 # Morse Code Decoder
 
+## How To Use The FPGA Implementation
 ![Image](Images/BasicR.gif)
+
+- **DIT**: hold button 0 until LED 1 blinks on and off once.
+- **DAH**: hold button 0 until LED 1 blinks on and off twice.
+- **Translate Sequence of DITS and DAHS**: Press button 1 to register that you are done sending a letter and then the letter should display on the PMOD LEDs
 
 ## What is this?
 
