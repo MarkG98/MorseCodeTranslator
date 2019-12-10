@@ -28,7 +28,7 @@ DITs and DAHs are activated when the signal goes from on to off, depending on th
 
 ## Translating DITs, DAHs, GAPs and SPACEs Into Letters
 
-![Image](Images/ALPHAFSM.png)
+![Image](Images/ALPHA.png)
 
 Alphabet FSM takes in the DITs, DAHs, SPACEs, and GAPs produced by the module in [`DitDahDecoder.v`]((https://github.com/MarkG98/MorseCodeTranslator/blob/master/DitDahDecoder.v)) and translates a series of these signals to letters for the system to output. This finite state machine is in the [`alphabetMachine.v`](https://github.com/MarkG98/MorseCodeTranslator/blob/master/alphabetMachine.v) file in the project repository. Each state represents a letter, and each transition is dependent on the current state (letter) and the input signal.
 
