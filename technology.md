@@ -10,6 +10,7 @@ We separated the Morse Decoder into three distinct parts. The first part decodes
 ## Schematic
 
 ![Image](Images/OverallSchematic.png)
+*Note that the schematic for the FPGA implementation is slightly different for there is another button input for the user to manually control the `done` signal*
 
 ## Decoding the Signal Into DITs, DAHs, GAPs and SPACEs
 Describing [`DitDahDecoder.v`](https://github.com/MarkG98/MorseCodeTranslator/blob/master/DitDahDecoder.v)
