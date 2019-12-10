@@ -1,3 +1,5 @@
+// Outdated machine that converted a signal to dits and dahs.
+
 `define WAIT 3'h0
 `define DIT 3'h1
 `define DAH 3'h2

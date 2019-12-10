@@ -1,3 +1,9 @@
+/*
+This code takes a signal and a clock and outputs dits, dahs, gaps, and spaces.
+The Width defines the amount of time that the counter will count to, or in
+other words the amount of time for each dit and dah.
+*/
+
 `ifndef DITDAH
 `define DITDAH
 
