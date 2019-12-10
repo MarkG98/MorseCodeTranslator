@@ -13,7 +13,7 @@ title: Overview
 - **Translate Sequence of DITS and DAHS**: Press button 1 to register that you are done sending a letter and then the letter should display on the PMOD LEDs
 
 ## What Is Morse Code?
-Morse code is a standardized character encoding scheme that uses two different signal lengths (DIT being a short signal and DAH being a long signal) to encode text characters. The encodings for the alphabet and numbers 0 - 9 can be seen below chart taken from the [Morse code Wikipedia page](https://en.wikipedia.org/wiki/Morse_code)
+Morse code is a standardized character encoding scheme that uses two different signal lengths (DIT being a short signal and DAH being a long signal) to encode text characters. The encodings for the alphabet and numbers 0 - 9 can be seen below chart taken from the [Morse code Wikipedia page](https://en.wikipedia.org/wiki/Morse_code). In this diagram dots represent the DITs and dashes represents the DITs.
 
 ![Image](Images/MC.png)
 
