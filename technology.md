@@ -7,7 +7,7 @@ title: Technology
 
 We separated the Morse Decoder into three distinct parts. The first part decodes the signal into a series of DITs, DAHs, GAPs, and SPACEs. The second part takes those and outputs the letters as well as a done flag. The last part implements the former parts on the FPGA.
 
-## Schematic
+## High Level Schematic
 
 ![Image](Images/schem.png)
 *Note that the schematic for the FPGA implementation is slightly different for there is another button input for the user to manually control the `done` signal*
@@ -15,7 +15,7 @@ We separated the Morse Decoder into three distinct parts. The first part decodes
 ## Decoding the Signal Into DITs, DAHs, GAPs and SPACEs
 Describing [`DitDahDecoder.v`](https://github.com/MarkG98/MorseCodeTranslator/blob/master/DitDahDecoder.v)
 
-To implement the signal decoder, we made a counter that starts counting up as long as the signal is constant, whether high or low. The counter increments by one for each clock cycle. When the signal switches, the counter is reset to 0. This counter serves as a debouncer of the button as well as timing for the DITs, DAHs, GAPs and SPACEs. The following table details what constitutes a DIT DAH, GAP and SPACE:
+To implement the signal decoder, we made a counter that starts counting up as long as the signal is constant, whether high or low. The counter increments by one for each clock cycle. When the signal switches, the counter is reset to 0. This counter serves as a debouncer of the button as well as timing for the DITs, DAHs, GAPs and SPACEs due to the fact that the counter only accumulates when the signal is constant at 1 or 0. The following table details what constitutes a DIT DAH, GAP and SPACE:
 
 | Output |  Time Length (Relative) | Held Signal  | MSBs |
 |--------|-------------------------|--------------|------|
