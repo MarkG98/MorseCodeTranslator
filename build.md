@@ -16,8 +16,9 @@ Zynq-7000 ARM/FPGA SoC Trainer Board](https://reference.digilentinc.com/referenc
 2. See instructions in `MorseDecoder.t.v` to change what you want to be communicated through Morse code.
 3. Run `make run` to compile and run the simulation.
 4. Run `gtkwave Decoder.vcd` in the terminal to open the simulation results in gtkwave, and view the letter and done signal to identify the letters which were transmitted and should theoretically
-be visible to the user. Optionally one can use the letter filter in the `/filters` directory in the root of the repository to translate the ASCII codes for letters to their actual characters. Example output for this is shown below.
-
+be visible to the user. Optionally one can use the letter filter in the `/filters` directory in the root of the repository to translate the ASCII codes for letters to their actual characters. Example output for this is shown below:
+![Image](Images/SampleSim.JPG)
+Notice how the letter signal spell "Mark and Jill" if you read it where it coincides with a high `done` signal.
 5. Optionally, run other test benches for other modules by following instructions in `Makefile` on the `master` branch.
 
 ## FPGA Implementation On Zybo Zynq-7000
